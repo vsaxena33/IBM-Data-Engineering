@@ -16,15 +16,15 @@ then
 fi
 
 # [TASK 1]
-targetDirectory=$1
-destinationDirectory=$2
+targetDirectory= $1
+destinationDirectory= $2
 
 # [TASK 2]
 echo "Target Directory: $targetDirectory"
 echo "Destination Directory: $destinationDirectory"
 
 # [TASK 3]
-currentTS=$(date +%s)
+currentTS= $(date +%s)
 
 # [TASK 4]
 backupFileName="backup-$currentTS.tar.gz"
@@ -40,7 +40,7 @@ backupFileName="backup-$currentTS.tar.gz"
 origAbsPath=$(pwd)
 
 # [TASK 6]
-cd "$destinationDirectory" || exit
+cd "$destinationDirectory"
 destAbsPath=$(pwd)
 
 # [TASK 7]
@@ -52,10 +52,10 @@ yesterdayTS=$(($currentTS - 24 * 60 * 60))
 
 declare -a toBackup
 
-for file in * # [TASK 9]
+for file in $(ls) # [TASK 9]
 do
   # [TASK 10]
-  if [[ `date -r $file +%s` -gt $yesterdayTS ]]
+  if ((`date -r $file +%s` > $yesterdayTS))
   then
     # [TASK 11]
     toBackup+=($file)
